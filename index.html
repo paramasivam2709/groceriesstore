@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEA Grocery - Organic Food Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f3f;
+            --primary-light: #2d8f5f;
+            --secondary: #e8f5e9;
+            --accent: #ff6b35;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --white: #ffffff;
+            --gray-bg: #f5f5f5;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .top-bar a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .top-bar a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Header */
+        .main-header {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        /* Search Bar */
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .search-box:focus-within {
+            box-shadow: 0 0 0 3px rgba(26, 95, 63, 0.1);
+        }
+
+        .category-select {
+            background: var(--gray-bg);
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 12px 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: var(--primary-light);
+        }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 12px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .action-btn i {
+            font-size: 20px;
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(26,95,63,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInLeft 0.8s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-title span {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(26, 95, 63, 0.2);
+            z-index: -1;
+            transform: skewX(-10deg);
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .email-input:focus {
+            border-color: var(--primary);
+        }
+
+        .subscribe-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subscribe-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .subscribe-btn:hover::before {
+            left: 100%;
+        }
+
+        .subscribe-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(26, 95, 63, 0.3);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 0.8s ease;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            transition: var(--transition);
+        }
+
+        .hero-img:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .badge-1 {
+            top: 20%;
+            left: -20px;
+            animation-delay: 0s;
+        }
+
+        .badge-2 {
+            bottom: 20%;
+            right: -20px;
+            animation-delay: 1.5s;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .nav-arrows {
+            display: flex;
+            gap: 10px;
+        }
+
+        .arrow-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--primary);
+        }
+
+        .arrow-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .arrow-btn.prev:hover {
+            transform: translateX(-3px);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--gray-bg);
+            border-radius: 20px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transform: translateY(100%);
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .category-card:hover::before {
+            transform: translateY(0);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(26, 95, 63, 0.2);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 30px;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .category-name {
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-name {
+            color: white;
+        }
+
+        .category-count {
+            font-size: 12px;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-count {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Promo Banners */
+        .promo-section {
+            padding: 40px 0;
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .promo-card {
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .promo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .promo-1 {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        }
+
+        .promo-2 {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+        }
+
+        .promo-3 {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+        }
+
+        .promo-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            max-width: 200px;
+        }
+
+        .promo-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .promo-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            width: fit-content;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .promo-btn:hover {
+            background: var(--text-dark);
+            transform: translateX(5px);
+        }
+
+        .promo-img {
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .promo-card:hover .promo-img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 60px 0;
+            background: var(--gray-bg);
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .tab {
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            padding: 5px 0;
+        }
+
+        .tab.active {
+            color: var(--primary);
+        }
+
+        .tab::after {
+            content: '';
+            position: absolute;
+            bottom: -17px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .tab.active::after,
+        .tab:hover::after {
+            width: 100%;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .product-badge.sale {
+            background: #e74c3c;
+        }
+
+        .product-badge.new {
+            background: #3498db;
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            color: var(--text-dark);
+        }
+
+        .action-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .product-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            max-height: 80%;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            color: #f1c40f;
+            font-size: 14px;
+        }
+
+        .rating-count {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .current-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Daily Best Sells */
+        .daily-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .daily-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .daily-banner {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .daily-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .daily-banner h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .daily-banner p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .shop-now-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .shop-now-btn:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .daily-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .daily-product-card {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .daily-product-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .daily-product-img {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .daily-product-img img {
+            max-height: 100%;
+            transition: var(--transition);
+        }
+
+        .daily-product-card:hover .daily-product-img img {
+            transform: scale(1.1);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #eee;
+            border-radius: 3px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+
+        .stock-info {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .add-cart-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--primary-light);
+            transform: scale(1.02);
+        }
+
+        /* Features Section */
+        .features-section {
+            background: var(--primary);
+            padding: 60px 0;
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .feature-text h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .feature-text p {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 30px;
+            background: white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #1a1a1a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .promo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-left {
+                font-size: 12px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .search-container {
+                order: 3;
+                width: 100%;
+                max-width: none;
+                margin-top: 15px;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .newsletter-form {
+                margin: 0 auto;
+            }
+            
+            .hero-image {
+                order: -1;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .daily-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-circle {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--gray-bg);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-phone-alt"></i> 1900 - 888</span>
+                    <span>24/7 Support Center</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#">Track Your Order</a> | 
+                    <a href="#">Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span>sea</span>
+                </a>
+
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Shop <i class="fas fa-chevron-down"></i></a></li>
+                        <li><a href="#">Deals</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </nav>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <select class="category-select">
+                            <option>All Categories</option>
+                            <option>Vegetables</option>
+                            <option>Fruits</option>
+                            <option>Meat</option>
+                        </select>
+                        <input type="text" class="search-input" placeholder="Search for items...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Compare</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>Wishlist</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="badge">2</span>
+                    </a>
+                    <a href="#" class="action-btn">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Don't miss <span>amazing grocery</span> deals.</h1>
+                    <p class="hero-desc">Join our daily newsletter and get exclusive grocery discounts, fresh finds, and tasty inspirations straight to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="email-input" placeholder="Your email address">
+                        <button type="submit" class="subscribe-btn">
+                            Subscribe <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=600&fit=crop" alt="Fresh Groceries" class="hero-img">
+                    <div class="floating-badge badge-1">
+                        <strong>100%</strong><br>Organic
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <strong>50%</strong><br>Off
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Categories</h2>
+                <div class="nav-arrows">
+                    <button class="arrow-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="arrow-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card fade-in">
+                    <div class="category-icon">🍰</div>
+                    <div class="category-name">Cake & Milk</div>
+                    <div class="category-count">26 items</div>
+                </div>
+                <div class="category-card fade-in">
+                    <div class="category-icon">🥝</div>
+                    <div class="category-name">Organic Kiwi</div>
+                    <div class="category-count">28 items</div>
+                </div>
+                <div class="category-card fade-in">
+                    <div class="category-icon">🍑</div>
+                    <div class="category-name">Peaches</div>
+                    <div class="category-count">14 items</div>
+                </div>
+                <div class="category-card fade-in">
+                    <div class="category-icon">🍎</div>
+                    <div class="category-name">Red Apples</div>
+                    <div class="category-count">54 items</div>
+                </div>
+                <div class="category-card fade-in">
+                    <div class="category-icon">🍪</div>
+                    <div class="category-name">Snacks</div>
+                    <div class="category-count">56 items</div>
+                </div>
+                <div class="category-card fade-in">
+                    <div class="category-icon">🥦</div>
+                    <div class="category-name">Vegetables</div>
+                    <div class="category-count">72 items</div>
+                </div>
+                <div class="category-card fade-in">
+                    <div class="category-icon">🍓</div>
+                    <div class="category-name">Strawberry</div>
+                    <div class="category-count">36 items</div>
+                </div>
+                <div class="category-card fade-in">
+                    <div class="category-icon">🫐</div>
+                    <div class="category-name">Black Plum</div>
+                    <div class="category-count">123 items</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banners -->
+    <section class="promo-section">
+        <div class="container">
+            <div class="promo-grid">
+                <div class="promo-card promo-1 fade-in">
+                    <h3 class="promo-title">Onions You'll Love at First Slice</h3>
+                    <p class="promo-desc">Fresh from the farm</p>
+                    <button class="promo-btn">Shop Now <i class="fas fa-arrow-right"></i></button>
+                    <img src="https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=300&h=300&fit=crop" alt="Onions" class="promo-img">
+                </div>
+                <div class="promo-card promo-2 fade-in">
+                    <h3 class="promo-title">Quick, Fresh, and Good for You</h3>
+                    <p class="promo-desc">Daily essentials</p>
+                    <button class="promo-btn">Shop Now <i class="fas fa-arrow-right"></i></button>
+                    <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=300&fit=crop" alt="Milk" class="promo-img">
+                </div>
+                <div class="promo-card promo-3 fade-in">
+                    <h3 class="promo-title">The best Organic Products Online</h3>
+                    <p class="promo-desc">100% certified organic</p>
+                    <button class="promo-btn">Shop Now <i class="fas fa-arrow-right"></i></button>
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&h=300&fit=crop" alt="Vegetables" class="promo-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Products</h2>
+            </div>
+            <div class="tabs-container">
+                <button class="tab active">All</button>
+                <button class="tab">Milks & Dairies</button>
+                <button class="tab">Coffees & Teas</button>
+                <button class="tab">Pet Foods</button>
+                <button class="tab">Meats</button>
+                <button class="tab">Vegetables</button>
+                <button class="tab">Fruits</button>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card fade-in">
+                    <span class="product-badge">Hot</span>
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-icon"><i class="fas fa-exchange-alt"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=300&h=300&fit=crop" alt="Herbal Tea">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">By NestFood</div>
+                        <h3 class="product-name">Candy Instant Herbal Beverage with Dandelion</h3>
+                        <div class="product-rating">
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                            <span class="rating-count">(4.5)</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price">$28.85</span>
+                                <span class="old-price">$32.8</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card fade-in">
+                    <span class="product-badge sale">Sale</span>
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-icon"><i class="fas fa-exchange-alt"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=300&h=300&fit=crop" alt="Cashew Mix">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">By NextFood</div>
+                        <h3 class="product-name">Sahale Snacks Raspberry Crumble Cashew Mix</h3>
+                        <div class="product-rating">
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="rating-count">(5.0)</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price">$52.85</span>
+                                <span class="old-price">$55.8</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card fade-in">
+                    <span class="product-badge new">New</span>
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-icon"><i class="fas fa-exchange-alt"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=300&h=300&fit=crop" alt="Veggie Pops">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">By StarKist</div>
+                        <h3 class="product-name">Organic Veggie Pops in Broccoli Cheddar Flavour</h3>
+                        <div class="product-rating">
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+                            <span class="rating-count">(4.0)</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price">$48.85</span>
+                                <span class="old-price">$52.8</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card fade-in">
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-icon"><i class="fas fa-exchange-alt"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1596589811350-4e5a6b15a2a8?w=300&h=300&fit=crop" alt="Edamame">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">By NextFood</div>
+                        <h3 class="product-name">Sahale Snacks Asian Sesame Edamame Bean + Nut</h3>
+                        <div class="product-rating">
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                            <span class="rating-count">(4.5)</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price">$17.85</span>
+                                <span class="old-price">$19.8</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card fade-in">
+                    <span class="product-badge sale">Sale</span>
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-icon"><i class="fas fa-exchange-alt"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300&h=300&fit=crop" alt="Coconut Flakes">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">By NextFood</div>
+                        <h3 class="product-name">Let's do Organic Unsweetened Coconut Flakes</h3>
+                        <div class="product-rating">
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="rating-count">(5.0)</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price">$23.85</span>
+                                <span class="old-price">$25.8</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card fade-in">
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-icon"><i class="fas fa-exchange-alt"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop" alt="Mighty Muffin">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">By NextFood</div>
+                        <h3 class="product-name">FlapJacked Mighty Muffin with Probiotics</h3>
+                        <div class="product-rating">
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+                            <span class="rating-count">(4.0)</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price">$54.85</span>
+                                <span class="old-price">$55.8</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card fade-in">
+                    <span class="product-badge sale">Sale</span>
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-icon"><i class="fas fa-exchange-alt"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=300&h=300&fit=crop" alt="Pistachio Butter">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">By NextFood</div>
+                        <h3 class="product-name">Wilderness Poets Raw Pistachio Butter</h3>
+                        <div class="product-rating">
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                            <span class="rating-count">(4.5)</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price">$32.85</span>
+                                <span class="old-price">$33.8</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card fade-in">
+                    <span class="product-badge new">New</span>
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                        <div class="action-icon"><i class="fas fa-exchange-alt"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300&h=300&fit=crop" alt="Gel Cream">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">By Olay</div>
+                        <h3 class="product-name">Yuga Nabi Brightening Moisture Gel Cream</h3>
+                        <div class="product-rating">
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="rating-count">(5.0)</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="current-price">$35.85</span>
+                                <span class="old-price">$37.8</span>
+                            </div>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Best Sells -->
+    <section class="daily-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Daily Best Sells</h2>
+                <div class="tabs-container" style="border: none; padding: 0;">
+                    <button class="tab active">Featured</button>
+                    <button class="tab">Popular</button>
+                    <button class="tab">New added</button>
+                </div>
+            </div>
+            <div class="daily-grid">
+                <div class="daily-banner fade-in">
+                    <h3>Bring nature into your home</h3>
+                    <p>Get 40% off on all organic products this week. Limited time offer!</p>
+                    <button class="shop-now-btn">Shop Now <i class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="daily-products">
+                    <div class="daily-product-card fade-in">
+                        <span class="product-badge sale" style="position: static; display: inline-block; margin-bottom: 10px;">Save 20%</span>
+                        <div class="daily-product-img">
+                            <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=200&h=200&fit=crop" alt="Coconut Flakes">
+                        </div>
+                        <h4 style="font-size: 14px; margin-bottom: 10px;">Let's do Organic Unsweetened Coconut Flakes</h4>
+                        <div class="product-price" style="justify-content: center; margin-bottom: 10px;">
+                            <span class="current-price">$23.85</span>
+                            <span class="old-price">$28.8</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%;"></div>
+                        </div>
+                        <div class="stock-info">Sold: 70/100</div>
+                        <button class="add-cart-btn"><i class="fas fa-shopping-cart"></i> Add To Cart</button>
+                    </div>
+
+                    <div class="daily-product-card fade-in">
+                        <span class="product-badge" style="position: static; display: inline-block; margin-bottom: 10px; background: #3498db;">Save 15%</span>
+                        <div class="daily-product-img">
+                            <img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=200&h=200&fit=crop" alt="Cashew Mix">
+                        </div>
+                        <h4 style="font-size: 14px; margin-bottom: 10px;">Sahale Snacks Raspberry Crumble Cashew Mix</h4>
+                        <div class="product-price" style="justify-content: center; margin-bottom: 10px;">
+                            <span class="current-price">$52.85</span>
+                            <span class="old-price">$62.8</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%;"></div>
+                        </div>
+                        <div class="stock-info">Sold: 50/100</div>
+                        <button class="add-cart-btn"><i class="fas fa-shopping-cart"></i> Add To Cart</button>
+                    </div>
+
+                    <div class="daily-product-card fade-in">
+                        <span class="product-badge new" style="position: static; display: inline-block; margin-bottom: 10px;">New</span>
+                        <div class="daily-product-img">
+                            <img src="https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?w=200&h=200&fit=crop" alt="Veggie Pops">
+                        </div>
+                        <h4 style="font-size: 14px; margin-bottom: 10px;">Organic Veggie Pops in Broccoli Cheddar Flavour</h4>
+                        <div class="product-price" style="justify-content: center; margin-bottom: 10px;">
+                            <span class="current-price">$238.85</span>
+                            <span class="old-price">$245.8</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                        <div class="stock-info">Sold: 85/100</div>
+                        <button class="add-cart-btn"><i class="fas fa-shopping-cart"></i> Add To Cart</button>
+                    </div>
+
+                    <div class="daily-product-card fade-in">
+                        <span class="product-badge sale" style="position: static; display: inline-block; margin-bottom: 10px;">Save 10%</span>
+                        <div class="daily-product-img">
+                            <img src="https://images.unsplash.com/photo-1596589811350-4e5a6b15a2a8?w=200&h=200&fit=crop" alt="Edamame">
+                        </div>
+                        <h4 style="font-size: 14px; margin-bottom: 10px;">Sahale Snacks Asian Sesame Edamame Bean</h4>
+                        <div class="product-price" style="justify-content: center; margin-bottom: 10px;">
+                            <span class="current-price">$17.85</span>
+                            <span class="old-price">$19.8</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 30%;"></div>
+                        </div>
+                        <div class="stock-info">Sold: 30/100</div>
+                        <button class="add-cart-btn"><i class="fas fa-shopping-cart"></i> Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item fade-in">
+                    <div class="feature-icon"><i class="fas fa-tags"></i></div>
+                    <div class="feature-text">
+                        <h4>Best prices & offers</h4>
+                        <p>Orders $50 or more</p>
+                    </div>
+                </div>
+                <div class="feature-item fade-in">
+                    <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                    <div class="feature-text">
+                        <h4>Free delivery</h4>
+                        <p>24/7 amazing services</p>
+                    </div>
+                </div>
+                <div class="feature-item fade-in">
+                    <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="feature-text">
+                        <h4>Great daily deal</h4>
+                        <p>When you sign up</p>
+                    </div>
+                </div>
+                <div class="feature-item fade-in">
+                    <div class="feature-icon"><i class="fas fa-box-open"></i></div>
+                    <div class="feature-text">
+                        <h4>Wide assortment</h4>
+                        <p>Mega Discounts</p>
+                    </div>
+                </div>
+                <div class="feature-item fade-in">
+                    <div class="feature-icon"><i class="fas fa-undo"></i></div>
+                    <div class="feature-text">
+                        <h4>Easy returns</h4>
+                        <p>Within 30 days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <span>sea</span>
+                    </a>
+                    <p class="footer-desc">We provide the best organic products for your daily needs. Fresh from farm to your doorstep with love and care.</p>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Street, New York, USA</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+1 234 567 890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@sea.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Delivery Information</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Sign In</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> View Cart</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> My Wishlist</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Track Order</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Ticket</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Corporate</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Become a Vendor</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Affiliate Program</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Farm Business</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Farm Careers</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Our Suppliers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Popular</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Milk & Flavoured Milk</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Butter and Margarine</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Eggs Substitutes</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Marmalades</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Sour Cream and Dips</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SEA Grocery. All rights reserved.</p>
+                <div class="payment-methods">
+                    <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-amex"></i></div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Remove loader when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate progress bars
+                    const progressBars = entry.target.querySelectorAll('.progress-fill');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                this.parentElement.querySelector
