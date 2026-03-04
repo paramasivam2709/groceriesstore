@@ -1,0 +1,1271 @@
+<!-- about.html - About Us Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Stackly Grocery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f3f;
+            --primary-light: #2d8f5f;
+            --secondary: #e8f5e9;
+            --accent: #ff6b35;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --white: #ffffff;
+            --gray-bg: #f5f5f5;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background: var(--gray-bg);
+            line-height: 1.6;
+        }
+
+        /* Header Styles (Same as previous) */
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-header {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary);
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-box {
+            display: flex;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 12px 20px;
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 12px;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .page-title {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        /* About Content */
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 25px 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .experience-badge .years {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .experience-badge .text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .about-content h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .about-content h2 span {
+            color: var(--primary);
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .about-feature:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-feature i {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .about-feature h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .about-feature p {
+            font-size: 14px;
+            margin: 0;
+            color: var(--text-light);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--primary);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-10px);
+        }
+
+        .stat-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .team-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-social {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            transition: var(--transition);
+        }
+
+        .team-card:hover .team-social {
+            bottom: 0;
+        }
+
+        .team-social a {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .team-social a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .team-info {
+            padding: 25px;
+        }
+
+        .team-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 80px 0;
+            background: var(--gray-bg);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 25px;
+            transition: var(--transition);
+        }
+
+        .value-card:hover .value-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotateY(360deg);
+        }
+
+        .value-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .value-desc {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--gray-bg);
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 80px;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .testimonial-rating {
+            color: #f1c40f;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .footer-desc {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 32px;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #1a1a1a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .values-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .page-title {
+                font-size: 36px;
+            }
+            .about-content h2 {
+                font-size: 32px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-phone-alt"></i> 1900 - 888</span>
+                    <span>24/7 Support Center</span>
+                </div>
+                <div>
+                    <a href="404.html" style="color: white; text-decoration: none;">Track Your Order</a> | 
+                    <a href="404.html" style="color: white; text-decoration: none;">Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                <img src="image/logo.webp" alt="Stackly Logo" class="logo-img">
+                </a>
+
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li class="dropdown">
+                       <a href="">
+                       Home <i class="fas fa-chevron-down"></i>
+                      </a>
+
+                       <ul class="dropdown-menu">
+                       <li><a href="index.html">Home 1</a></li>
+                       <li><a href="home2.html">Home 2</a></li>
+                       </ul>
+                       </li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html" class="active">About Us</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search for items...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="404.html" class="action-btn"><i class="fas fa-exchange-alt"></i><span>Compare</span></a>
+                    <a href="404.html" class="action-btn"><i class="fas fa-heart"></i><span>Wishlist</span></a>
+                    <a href="cart.html" class="action-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="badge">2</span>
+                    </a>
+                    <a href="login.html" class="action-btn"><i class="fas fa-user"></i><span>Account</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title fade-in">About Us</h1>
+            <div class="breadcrumb fade-in">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>About Us</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <img src="image/hero-1.webp" alt="About SEA Grocery">
+                    <div class="experience-badge">
+                        <div class="years">25+</div>
+                        <div class="text">Years of<br>Experience</div>
+                    </div>
+                </div>
+                <div class="about-content fade-in">
+                    <h2>We Provide <span>Fresh & Organic</span> Products For Your Health</h2>
+                    <p>At Stackly Grocery, we believe that everyone deserves access to fresh, organic, and healthy food. Founded in 1999, we have grown from a small family-owned store to one of the leading organic grocery chains in the country.</p>
+                    <p>Our mission is simple: to bring farm-fresh, organic produce directly to your doorstep. We work with over 500 local farmers and producers to ensure that every product meets our strict quality standards.</p>
+                    <p>From fresh vegetables and fruits to dairy products and pantry staples, we carefully curate our selection to offer you only the best. Every item in our store is certified organic, non-GMO, and sustainably sourced.</p>
+                    
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-leaf"></i>
+                            <div>
+                                <h4>100% Organic</h4>
+                                <p>Certified products</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-truck"></i>
+                            <div>
+                                <h4>Free Shipping</h4>
+                                <p>On orders over $50</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-undo"></i>
+                            <div>
+                                <h4>Easy Returns</h4>
+                                <p>30-day policy</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <h4>24/7 Support</h4>
+                                <p>Dedicated team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon"><i class="fas fa-store"></i></div>
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Store Locations</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon"><i class="fas fa-tractor"></i></div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Partner Farmers</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-icon"><i class="fas fa-award"></i></div>
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Our Core Values</h2>
+                <p class="section-subtitle">The principles that guide everything we do at Stackly Grocery</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card fade-in">
+                    <div class="value-icon"><i class="fas fa-heart"></i></div>
+                    <h3 class="value-title">Customer First</h3>
+                    <p class="value-desc">We put our customers at the heart of everything we do. Your satisfaction is our top priority, and we go above and beyond to exceed your expectations.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                    <h3 class="value-title">Sustainability</h3>
+                    <p class="value-desc">We're committed to protecting our planet. From eco-friendly packaging to supporting sustainable farming practices, we take our environmental responsibility seriously.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 class="value-title">Integrity</h3>
+                    <p class="value-desc">We believe in transparency and honesty. What you see is what you get – no hidden ingredients, no false claims, just pure, honest organic products.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-subtitle">The passionate people behind Stackly Grocery</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card fade-in">
+                    <div class="team-image">
+                        <img src="image/tearm-1.webp" alt="John Smith">
+                        <div class="team-social">
+                            <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                            <a href="404.html"><i class="fab fa-twitter"></i></a>
+                            <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">John Smith</h3>
+                        <p class="team-role">Founder & CEO</p>
+                    </div>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-image">
+                        <img src="image/tearm-2.webp" alt="Sarah Johnson">
+                        <div class="team-social">
+                            <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                            <a href="404.html"><i class="fab fa-twitter"></i></a>
+                            <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Sarah Johnson</h3>
+                        <p class="team-role">Operations Director</p>
+                    </div>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-image">
+                        <img src="image/tearm-3.webp" alt="Michael Chen">
+                        <div class="team-social">
+                            <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                            <a href="404.html"><i class="fab fa-twitter"></i></a>
+                            <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Michael Chen</h3>
+                        <p class="team-role">Head of Procurement</p>
+                    </div>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-image">
+                        <img src="image/tearm-4.webp" alt="Emily Davis">
+                        <div class="team-social">
+                            <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                            <a href="404.html"><i class="fab fa-twitter"></i></a>
+                            <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Emily Davis</h3>
+                        <p class="team-role">Customer Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Real feedback from real customers</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Stackly Grocery has completely transformed how I shop for my family. The quality of their organic produce is unmatched, and the delivery is always on time. I can't imagine going back to regular grocery stores!"</p>
+                    <div class="testimonial-author">
+                        <img src="image/review-1.webp" alt="Customer" class="author-image">
+                        <div class="author-info">
+                            <h4>Amanda Wilson</h4>
+                            <p>Loyal Customer since 2018</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"As a nutritionist, I'm very particular about where I source my food. Stackly Grocery meets all my standards for organic certification and quality. I recommend them to all my clients."</p>
+                    <div class="testimonial-author">
+                        <img src="image/review-2.webp" alt="Customer" class="author-image">
+                        <div class="author-info">
+                            <h4>Dr. Robert Brown</h4>
+                            <p>Nutritionist & Health Coach</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"The convenience of having fresh, organic groceries delivered to my door is incredible. Their customer service team is always helpful and friendly. Stackly Grocery is a game-changer!"</p>
+                    <div class="testimonial-author">
+                        <img src="image/review-3.webp" alt="Customer" class="author-image">
+                        <div class="author-info">
+                            <h4>Jennifer Lee</h4>
+                            <p>Busy Mom of Three</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                <img src="image/logo.webp" alt="Stackly Logo" class="logo-img">
+                </a>
+                    <p class="footer-desc">We provide the best organic products for your daily needs. Fresh from farm to your doorstep with love and care.</p>
+                    <div class="footer-contact">
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>123 Organic Street, New York, USA</span></div>
+                        <div class="contact-item"><i class="fas fa-phone-alt"></i><span>+1 234 567 890</span></div>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><span>info@Stacklygrocery.com</span></div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="404.html">Delivery Information</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Sign In</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="404.html">My Wishlist</a></li>
+                        <li><a href="404.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Corporate</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Become a Vendor</a></li>
+                        <li><a href="404.html">Affiliate Program</a></li>
+                        <li><a href="404.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Popular</h4>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">Fresh Vegetables</a></li>
+                        <li><a href="shop.html">Organic Fruits</a></li>
+                        <li><a href="shop.html">Dairy Products</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Stackly Grocery. All rights reserved.</p>
+                <div class="payment-methods">
+                    <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
+                </div>
+                <div class="social-links">
+                    <a href="404.html" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="404.html" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="404.html" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // Animate stats counter
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    animateValue(entry.target, 0, target, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            observer.observe(stat);
+        });
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + (end > 100 ? '+' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Fade in animation
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            fadeObserver.observe(el);
+        });
+    </script>
+</body>
+</html>

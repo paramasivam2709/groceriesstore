@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>404 Page</title>
+
+<style>
+
+body{
+font-family:Segoe UI;
+background:#f5f5f5;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+}
+
+.box{
+background:white;
+padding:60px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1{
+font-size:80px;
+color:#1a5f3f;
+margin:0;
+}
+
+p{
+margin:15px 0 25px;
+color:#666;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+justify-content:center;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.home-btn{
+background:#1a5f3f;
+color:white;
+}
+
+.home-btn:hover{
+background:#2d8f5f;
+}
+
+.back-btn{
+background:#eee;
+}
+
+.back-btn:hover{
+background:#ddd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>404</h1>
+
+<p>Page Not Found</p>
+
+<div class="buttons">
+
+<button class="back-btn" onclick="history.back()">
+← Back
+</button>
+
+<button class="home-btn" onclick="location.href='index.html'">
+Home
+</button>
+
+</div>
+
+</div>
+
+</body>
+</html>

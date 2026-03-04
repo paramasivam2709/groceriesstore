@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly Grocery - Fresh Market (Home 2)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo"><i class="fas fa-leaf"></i></div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Minimal -->
+    <header class="header-minimal" id="header">
+        <div class="header-content">
+            <a href="index.html" class="logo-minimal">
+    <img src="image/logo.webp" class="logo-img" alt="Stackly Logo">
+</a>
+
+            <nav>
+                <ul class="nav-minimal" id="navMenu">
+                    <li class="dropdown">
+    <a href="">
+        Home <i class="fas fa-chevron-down"></i>
+    </a>
+
+    <ul class="dropdown-menu">
+        <li><a href="index.html">Home 1</a></li>
+        <li><a href="home2.html">Home 2</a></li>
+    </ul>
+</li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions-minimal">
+                <a href="404.html" class="action-btn-minimal"><i class="fas fa-search"></i></a>
+                <a href="login.html" class="action-btn-minimal"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="action-btn-minimal">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     <!-- ============================================
+         HERO OPTION 3: CAROUSEL/SLIDER
+         ============================================ -->
+    <section class="hero-carousel" id="carousel">
+        <!-- Slide 1 -->
+        <div class="carousel-slide active">
+            <div class="carousel-bg" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&h=1080&fit=crop');"></div>
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+                <span class="carousel-tag">New Season</span>
+                <h1 class="carousel-title">Summer Harvest Collection</h1>
+                <p class="carousel-text">Discover the vibrant flavors of summer with our freshly picked organic fruits and vegetables.</p>
+                <div class="carousel-buttons">
+                    <a href="404.html" class="btn-primary">Explore Collection</a>
+                    <a href="404.html" class="btn-white">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+            <div class="carousel-bg" style="background-image: url('https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=1920&h=1080&fit=crop');"></div>
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+                <span class="carousel-tag">Best Sellers</span>
+                <h1 class="carousel-title">Farm to Table Freshness</h1>
+                <p class="carousel-text">Experience the difference of truly fresh produce, delivered from our partner farms to your kitchen.</p>
+                <div class="carousel-buttons">
+                    <a href="404.html" class="btn-primary">Shop Now</a>
+                    <a href="404.html" class="btn-white">Our Farms</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+            <div class="carousel-bg" style="background-image: url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=1920&h=1080&fit=crop');"></div>
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+                <span class="carousel-tag">Special Offer</span>
+                <h1 class="carousel-title">Get 50% Off First Order</h1>
+                <p class="carousel-text">Join thousands of happy customers and start your healthy journey today with code WELCOME50.</p>
+                <div class="carousel-buttons">
+                    <a href="404.html" class="btn-primary">Claim Offer</a>
+                    <a href="404.html" class="btn-white">How It Works</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="carousel-arrows">
+            <div class="carousel-arrow" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
+            <div class="carousel-arrow" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
+        </div>
+        
+        <div class="carousel-nav">
+            <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+            <div class="carousel-dot" onclick="goToSlide(1)"></div>
+            <div class="carousel-dot" onclick="goToSlide(2)"></div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <h3>Option 4: Interactive Product Showcase</h3>
+    </div>
+
+    <!-- Features Bar -->
+    <section class="features-bar">
+        <div class="features-bar-grid">
+            <div class="feature-bar-item reveal">
+                <div class="feature-bar-icon"><i class="fas fa-truck"></i></div>
+                <div class="feature-bar-text">
+                    <h4>Free Shipping</h4>
+                    <p>On orders over $50</p>
+                </div>
+            </div>
+            <div class="feature-bar-item reveal">
+                <div class="feature-bar-icon"><i class="fas fa-leaf"></i></div>
+                <div class="feature-bar-text">
+                    <h4>100% Organic</h4>
+                    <p>Certified products</p>
+                </div>
+            </div>
+            <div class="feature-bar-item reveal">
+                <div class="feature-bar-icon"><i class="fas fa-undo"></i></div>
+                <div class="feature-bar-text">
+                    <h4>Easy Returns</h4>
+                    <p>30-day guarantee</p>
+                </div>
+            </div>
+            <div class="feature-bar-item reveal">
+                <div class="feature-bar-icon"><i class="fas fa-headset"></i></div>
+                <div class="feature-bar-text">
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated team</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Showcase -->
+    <section class="categories-section-2">
+        <div class="section-header-center reveal">
+            <span class="section-tag">Our Categories</span>
+            <h2 class="section-title-large">Browse by Category</h2>
+            <p class="section-subtitle">Explore our wide range of fresh, organic products sourced directly from local farms</p>
+        </div>
+        <div class="categories-showcase">
+            <div class="category-showcase-item large reveal">
+                <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=800&h=800&fit=crop" alt="Vegetables" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Fresh Vegetables</h3>
+                    <p class="category-showcase-count">48 Products</p>
+                </div>
+            </div>
+            <div class="category-showcase-item reveal">
+                <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400&h=600&fit=crop" alt="Fruits" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Fruits</h3>
+                    <p class="category-showcase-count">36 Products</p>
+                </div>
+            </div>
+            <div class="category-showcase-item reveal">
+                <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=400&h=600&fit=crop" alt="Dairy" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Dairy</h3>
+                    <p class="category-showcase-count">24 Products</p>
+                </div>
+            </div>
+            <div class="category-showcase-item reveal">
+                <img src="https://images.unsplash.com/photo-1607623814075-e51df1bd6565?w=400&h=600&fit=crop" alt="Meat" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Meat</h3>
+                    <p class="category-showcase-count">18 Products</p>
+                </div>
+            </div>
+            <div class="category-showcase-item reveal">
+                <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=400&h=600&fit=crop" alt="Beverages" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Beverages</h3>
+                    <p class="category-showcase-count">30 Products</p>
+                </div>
+            </div>
+            <div class="category-showcase-item reveal">
+                <img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=400&h=600&fit=crop" alt="Snacks" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Snacks</h3>
+                    <p class="category-showcase-count">42 Products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section 2 -->
+    <section class="products-section-2">
+        <div class="products-header-flex reveal">
+            <div>
+                <span class="section-tag">Popular Products</span>
+                <h2 class="section-title-large" style="text-align: left; margin-top: 15px;">Trending Now</h2>
+            </div>
+            <div class="tabs-minimal">
+                <button class="tab-minimal active">All</button>
+                <button class="tab-minimal">Vegetables</button>
+                <button class="tab-minimal">Fruits</button>
+                <button class="tab-minimal">Dairy</button>
+            </div>
+            <a href="products.html" class="btn-view-all">
+                View All <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="products-slider">
+            <div class="product-card-2 reveal">
+                <span class="product-badge-2">Sale</span>
+                <div class="product-wishlist"><i class="far fa-heart"></i></div>
+                <div class="product-image-2">
+                    <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=400&fit=crop" alt="Apples">
+                    <div class="product-quick-add">Quick Add</div>
+                </div>
+                <div class="product-info-2">
+                    <div class="product-rating-2">
+                        <span class="stars-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                        <span class="rating-text">(4.8)</span>
+                    </div>
+                    <h3 class="product-name-2">Organic Red Apples</h3>
+                    <div class="product-footer-2">
+                        <div class="product-price-2">
+                            <span class="price-current">$4.99</span>
+                            <span class="price-old">$6.99</span>
+                        </div>
+                        <span class="product-weight">1kg</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card-2 reveal">
+                <span class="product-badge-2" style="background: #27ae60;">New</span>
+                <div class="product-wishlist"><i class="far fa-heart"></i></div>
+                <div class="product-image-2">
+                    <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop" alt="Bananas">
+                    <div class="product-quick-add">Quick Add</div>
+                </div>
+                <div class="product-info-2">
+                    <div class="product-rating-2">
+                        <span class="stars-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        <span class="rating-text">(5.0)</span>
+                    </div>
+                    <h3 class="product-name-2">Organic Banana Bunch</h3>
+                    <div class="product-footer-2">
+                        <div class="product-price-2">
+                            <span class="price-current">$3.49</span>
+                        </div>
+                        <span class="product-weight">1.2kg</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card-2 reveal">
+                <div class="product-wishlist"><i class="far fa-heart"></i></div>
+                <div class="product-image-2">
+                    <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400&h=400&fit=crop" alt="Carrots">
+                    <div class="product-quick-add">Quick Add</div>
+                </div>
+                <div class="product-info-2">
+                    <div class="product-rating-2">
+                        <span class="stars-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+                        <span class="rating-text">(4.2)</span>
+                    </div>
+                    <h3 class="product-name-2">Fresh Carrots Bundle</h3>
+                    <div class="product-footer-2">
+                        <div class="product-price-2">
+                            <span class="price-current">$2.99</span>
+                            <span class="price-old">$3.99</span>
+                        </div>
+                        <span class="product-weight">500g</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card-2 reveal">
+                <span class="product-badge-2">Hot</span>
+                <div class="product-wishlist"><i class="far fa-heart"></i></div>
+                <div class="product-image-2">
+                    <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=400&h=400&fit=crop" alt="Milk">
+                    <div class="product-quick-add">Quick Add</div>
+                </div>
+                <div class="product-info-2">
+                    <div class="product-rating-2">
+                        <span class="stars-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                        <span class="rating-text">(4.7)</span>
+                    </div>
+                    <h3 class="product-name-2">Organic Whole Milk</h3>
+                    <div class="product-footer-2">
+                        <div class="product-price-2">
+                            <span class="price-current">$5.99</span>
+                        </div>
+                        <span class="product-weight">1 Gallon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Section 2 -->
+    <section class="promo-section-2">
+        <div class="promo-grid-2">
+            <div class="promo-large reveal">
+                <div class="promo-large-content">
+                    <span class="promo-tag">Limited Offer</span>
+                    <h2 class="promo-title-large">Get 50% Off On Your First Order</h2>
+                    <p class="promo-desc-large">
+                        Use code <strong style="color: var(--accent-2);">WELCOME50</strong> at checkout. 
+                        Valid for new customers only. Minimum order value $30.
+                    </p>
+                    <a href="shop.html" class="btn-primary" style="background: white; color: var(--primary);">
+                        Shop Now <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=600&fit=crop" alt="Offer" class="promo-large-img">
+            </div>
+            <div class="promo-small">
+                <div class="promo-card-small reveal">
+                    <h3 class="promo-card-title">Fresh Arrivals</h3>
+                    <p class="promo-card-text">Discover our newest seasonal products fresh from the farm this week.</p>
+                    <a href="shop.html" class="promo-link">
+                        Explore <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="promo-card-small accent reveal">
+                    <h3 class="promo-card-title">Farm Box</h3>
+                    <p class="promo-card-text">Subscribe and save 20% on weekly organic produce boxes.</p>
+                    <a href="404.html" class="promo-link">
+                        Subscribe <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section 2 -->
+    <section class="newsletter-section-2">
+        <div class="newsletter-content reveal">
+            <h2 class="newsletter-title">Join Our Community</h2>
+            <p class="newsletter-text">
+                Subscribe to our newsletter for exclusive offers, recipes, and tips on living a healthier, 
+                more sustainable lifestyle.
+            </p>
+            <form class="newsletter-form-2" onsubmit="handleSubscribe(event)">
+                <input type="email" class="newsletter-input-2" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn-2">
+                    Subscribe <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section class="instagram-section">
+        <div class="instagram-header reveal">
+            <h2 class="instagram-title">Follow Us @Stacklygrocery</h2>
+            <a href="404.html" class="instagram-handle"><i class="fab fa-instagram"></i> @Stacklygrocery</a>
+        </div>
+        <div class="instagram-grid">
+            <div class="instagram-item reveal">
+                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=400&h=400&fit=crop" alt="Instagram">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item reveal">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=400&fit=crop" alt="Instagram">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item reveal">
+                <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400&h=400&fit=crop" alt="Instagram">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item reveal">
+                <img src="https://images.unsplash.com/photo-1563729768-6af784d6df1d?w=400&h=400&fit=crop" alt="Instagram">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item reveal">
+                <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400&h=400&fit=crop" alt="Instagram">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="instagram-item reveal">
+                <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=400&h=400&fit=crop" alt="Instagram">
+                <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer 2 -->
+    <footer class="footer-2">
+        <div class="footer-top">
+            <div class="footer-brand-2 reveal">
+                <a href="index.html" class="logo-minimal">
+    <img src="image/logo.webp" class="logo-img" alt="Stackly Logo">
+</a>
+                <p class="footer-text">
+                    Bringing the freshest organic produce from local farms to your table. 
+                    Eat healthy, live better with Stackly Grocery.
+                </p>
+                <div class="footer-social">
+                    <a href="404.html" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="404.html" class="social-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="404.html" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="404.html" class="social-btn"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="reveal">
+                <h4 class="footer-title-2">Quick Links</h4>
+                <ul class="footer-links-2">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="404.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="reveal">
+                <h4 class="footer-title-2">Categories</h4>
+                <ul class="footer-links-2">
+                    <li><a href="shop.html">Vegetables</a></li>
+                    <li><a href="shop.html">Fruits</a></li>
+                    <li><a href="shop.html">Dairy & Eggs</a></li>
+                    <li><a href="shop.html">Meat & Seafood</a></li>
+                    <li><a href="shop.html">Beverages</a></li>
+                </ul>
+            </div>
+            <div class="reveal">
+                <h4 class="footer-title-2">Support</h4>
+                <ul class="footer-links-2">
+                    <li><a href="404.html">Help Center</a></li>
+                    <li><a href="404.html">Shipping Info</a></li>
+                    <li><a href="404.html">Returns</a></li>
+                    <li><a href="404.html">Track Order</a></li>
+                    <li><a href="404.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom-2">
+            <p>&copy; 2026 Stackly Grocery. All rights reserved.</p>
+            <div class="payment-methods-2">
+                <div class="payment-method"><i class="fab fa-cc-visa"></i></div>
+                <div class="payment-method"><i class="fab fa-cc-mastercard"></i></div>
+                <div class="payment-method"><i class="fab fa-cc-amex"></i></div>
+                <div class="payment-method"><i class="fab fa-cc-paypal"></i></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Remove loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('navMenu');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            nav.style.position = 'absolute';
+            nav.style.top = '100%';
+            nav.style.left = '0';
+            nav.style.right = '0';
+            nav.style.background = 'white';
+            nav.style.flexDirection = 'column';
+            nav.style.padding = '20px';
+            nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+        }
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Newsletter form
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.newsletter-btn-2');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+                btn.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    e.target.reset();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab-minimal').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab-minimal').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Quick add to cart
+        document.querySelectorAll('.product-quick-add').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.textContent = 'Added!';
+                this.style.background = '#27ae60';
+                
+                // Update cart count
+                const cartCount = document.querySelector('.cart-count');
+                cartCount.textContent = parseInt(cartCount.textContent) + 1;
+                
+                setTimeout(() => {
+                    this.textContent = 'Quick Add';
+                    this.style.background = '';
+                }, 2000);
+            });
+        });
+
+        // Wishlist toggle
+        document.querySelectorAll('.product-wishlist').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    this.style.background = '#e74c3c';
+                    this.style.color = 'white';
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    this.style.background = 'white';
+                    this.style.color = '';
+                }
+            });
+        });
+    </script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance carousel
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

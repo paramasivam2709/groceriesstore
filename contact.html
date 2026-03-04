@@ -1,0 +1,1004 @@
+<!-- contact.html - Contact Us Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Stackly Grocery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f3f;
+            --primary-light: #2d8f5f;
+            --secondary: #e8f5e9;
+            --accent: #ff6b35;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --white: #ffffff;
+            --gray-bg: #f5f5f5;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background: var(--gray-bg);
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-header {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary);
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-box {
+            display: flex;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 12px 20px;
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 12px;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        /* Contact Info Cards */
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .info-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--secondary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+
+        .info-card:hover .info-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotateY(360deg);
+        }
+
+        .info-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .info-text {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .form-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .form-subtitle {
+            color: var(--text-light);
+            margin-bottom: 35px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(26, 95, 63, 0.1);
+        }
+
+        .form-label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            pointer-events: none;
+            transition: var(--transition);
+            background: white;
+            padding: 0 5px;
+        }
+
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            top: 0;
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+            padding-top: 20px;
+        }
+
+        textarea.form-input + .form-label {
+            top: 30px;
+        }
+
+        textarea.form-input:focus + .form-label,
+        textarea.form-input:not(:placeholder-shown) + .form-label {
+            top: 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(26, 95, 63, 0.3);
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 0 0 80px;
+        }
+
+        .map-container {
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--gray-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+            color: var(--primary);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 200px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .footer-desc {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 32px;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #1a1a1a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 36px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-phone-alt"></i> 1900 - 888</span>
+                    <span>24/7 Support Center</span>
+                </div>
+                <div>
+                    <a href="404.html" style="color: white; text-decoration: none;">Track Your Order</a> | 
+                    <a href="404.html" style="color: white; text-decoration: none;">Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                <img src="image/logo.webp" alt="Stackly Logo" class="logo-img">
+                </a>
+
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li class="dropdown">
+                       <a href="">
+                       Home <i class="fas fa-chevron-down"></i>
+                      </a>
+
+                       <ul class="dropdown-menu">
+                       <li><a href="index.html">Home 1</a></li>
+                       <li><a href="home2.html">Home 2</a></li>
+                       </ul>
+                       </li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="dashboard.html">Dashbord</a></li>
+                        <li><a href="contact.html" class="active">Contact Us</a></li>
+                    </ul>
+                </nav>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search for items...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="404.html" class="action-btn"><i class="fas fa-exchange-alt"></i><span>Compare</span></a>
+                    <a href="404.html" class="action-btn"><i class="fas fa-heart"></i><span>Wishlist</span></a>
+                    <a href="cart.html" class="action-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="badge">2</span>
+                    </a>
+                    <a href="login.html" class="action-btn"><i class="fas fa-user"></i><span>Account</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title fade-in">Contact Us</h1>
+            <div class="breadcrumb fade-in">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Contact Us</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info-grid">
+                        <div class="info-card fade-in">
+                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <h3 class="info-title">Our Location</h3>
+                            <p class="info-text">123 Organic Street<br>New York, NY 10001</p>
+                        </div>
+                        <div class="info-card fade-in">
+                            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                            <h3 class="info-title">Phone Number</h3>
+                            <p class="info-text">+1 234 567 890<br>+1 234 567 891</p>
+                        </div>
+                        <div class="info-card fade-in">
+                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                            <h3 class="info-title">Email Address</h3>
+                            <p class="info-text">info@Stacklygrocery.com<br>support@Stacklygrocery.com</p>
+                        </div>
+                        <div class="info-card fade-in">
+                            <div class="info-icon"><i class="fas fa-clock"></i></div>
+                            <h3 class="info-title">Working Hours</h3>
+                            <p class="info-text">Mon - Sat: 8AM - 10PM<br>Sunday: 10AM - 8PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="map-container fade-in">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645564756246!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="contact-form-container fade-in">
+                    <h2 class="form-title">Send us a Message</h2>
+                    <p class="form-subtitle">Have a question or feedback? We'd love to hear from you.</p>
+                    
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <input type="text" class="form-input" placeholder=" " required>
+                                <label class="form-label">Your Name</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-input" placeholder=" " required>
+                                <label class="form-label">Email Address</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-input" placeholder=" ">
+                                <label class="form-label">Phone Number</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-input" placeholder=" ">
+                                <label class="form-label">Subject</label>
+                            </div>
+                            <div class="form-group full">
+                                <textarea class="form-input" placeholder=" " required></textarea>
+                                <label class="form-label">Your Message</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p style="color: var(--text-light);">Find answers to common questions about our services</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do I place an order?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Simply browse our products, add items to your cart, and proceed to checkout. You can pay securely using credit card, PayPal, or other payment methods.
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What are your delivery hours?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We deliver 7 days a week from 8AM to 8PM. You can select your preferred delivery slot during checkout.
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you offer organic products only?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! All our products are 100% certified organic. We work directly with farmers to ensure the highest quality standards.
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is your return policy?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We offer a 30-day satisfaction guarantee. If you're not happy with any product, contact us for a full refund or replacement.
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can I track my order?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Once your order ships, you'll receive an email with a tracking link. You can also track orders in your account dashboard.
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you have a loyalty program?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Join our Stackly Rewards program to earn points on every purchase, get exclusive discounts, and enjoy member-only perks.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                <img src="image/logo.webp" alt="Stackly Logo" class="logo-img">
+                </a>
+                    <p class="footer-desc">We provide the best organic products for your daily needs. Fresh from farm to your doorstep with love and care.</p>
+                    <div class="footer-contact">
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>123 Organic Street, New York, USA</span></div>
+                        <div class="contact-item"><i class="fas fa-phone-alt"></i><span>+1 234 567 890</span></div>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><span>info@Stacklygrocery.com</span></div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="404.html">Delivery Information</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Sign In</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="404.html">My Wishlist</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Corporate</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Become a Vendor</a></li>
+                        <li><a href="404.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Popular</h4>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">Fresh Vegetables</a></li>
+                        <li><a href="shop.html">Organic Fruits</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Stackly Grocery. All rights reserved.</p>
+                <div class="payment-methods">
+                    <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
+                </div>
+                <div class="social-links">
+                    <a href="404.html" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="404.html" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="404.html" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+            
+            // Open clicked if wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                btn.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Fade in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

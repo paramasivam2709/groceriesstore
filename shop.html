@@ -1,0 +1,956 @@
+<!-- shop.html - Shop Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Stackly Grocery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f3f;
+            --primary-light: #2d8f5f;
+            --secondary: #e8f5e9;
+            --accent: #ff6b35;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --white: #ffffff;
+            --gray-bg: #f5f5f5;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background: var(--gray-bg);
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-header {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary);
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search-box {
+            display: flex;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 12px 20px;
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 12px;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: white;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+
+        /* Shop Layout */
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        /* Category Sidebar */
+        .category-sidebar {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            margin-bottom: 5px;
+        }
+
+        .category-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .category-link:hover,
+        .category-link.active {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+        .category-count {
+            background: var(--gray-bg);
+            padding: 2px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .category-link:hover .category-count,
+        .category-link.active .category-count {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Main Content */
+        .shop-banner {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shop-banner-content h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .shop-banner-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .shop-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .shop-btn:hover {
+            background: var(--text-dark);
+            transform: translateX(5px);
+        }
+
+        .shop-banner-img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            position: absolute;
+            right: 40px;
+            bottom: -20px;
+        }
+
+        /* Product Grid */
+        .products-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .action-icon:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .product-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-bg);
+        }
+
+        .product-image img {
+            max-height: 80%;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 80px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .footer-desc {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 32px;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #1a1a1a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1024px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+            .category-sidebar {
+                display: none;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .shop-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .shop-banner-img {
+                position: static;
+                margin-top: 20px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-phone-alt"></i> 1900 - 888</span>
+                    <span>24/7 Support Center</span>
+                </div>
+                <div>
+                    <a href="404.html" style="color: white; text-decoration: none;">Track Your Order</a> | 
+                    <a href="404.html" style="color: white; text-decoration: none;">Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                <img src="image/logo.webp" alt="Stackly Logo" class="logo-img">
+                </a>
+
+                <button class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li class="dropdown">
+                       <a href="">
+                       Home <i class="fas fa-chevron-down"></i>
+                      </a>
+
+                       <ul class="dropdown-menu">
+                       <li><a href="index.html">Home 1</a></li>
+                       <li><a href="home2.html">Home 2</a></li>
+                       </ul>
+                       </li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="shop.html" class="active">Shop</a></li>
+                        <li><a href="dashbord.html">Dashbord</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Search for items...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <a href="404.html" class="action-btn"><i class="fas fa-exchange-alt"></i><span>Compare</span></a>
+                    <a href="404.html" class="action-btn"><i class="fas fa-heart"></i><span>Wishlist</span></a>
+                    <a href="cart.html" class="action-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="badge">2</span>
+                    </a>
+                    <a href="login.html" class="action-btn"><i class="fas fa-user"></i><span>Account</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title fade-in">Shop</h1>
+            <div class="breadcrumb fade-in">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Shop</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Content -->
+    <div class="container">
+        <div class="shop-layout">
+            <!-- Sidebar -->
+            <aside class="category-sidebar fade-in">
+                <h3 class="sidebar-title">Categories</h3>
+                <ul class="category-list">
+                    <li class="category-item">
+                        <a href="404.html" class="category-link active">
+                            <span>All Products</span>
+                            <span class="category-count">156</span>
+                        </a>
+                    </li>
+                    <li class="category-item">
+                        <a href="404.html" class="category-link">
+                            <span>Vegetables</span>
+                            <span class="category-count">48</span>
+                        </a>
+                    </li>
+                    <li class="category-item">
+                        <a href="404.html" class="category-link">
+                            <span>Fruits</span>
+                            <span class="category-count">36</span>
+                        </a>
+                    </li>
+                    <li class="category-item">
+                        <a href="404.html" class="category-link">
+                            <span>Milk & Dairy</span>
+                            <span class="category-count">24</span>
+                        </a>
+                    </li>
+                    <li class="category-item">
+                        <a href="404.html" class="category-link">
+                            <span>Meat & Poultry</span>
+                            <span class="category-count">18</span>
+                        </a>
+                    </li>
+                    <li class="category-item">
+                        <a href="404.html" class="category-link">
+                            <span>Snacks</span>
+                            <span class="category-count">42</span>
+                        </a>
+                    </li>
+                    <li class="category-item">
+                        <a href="404.html" class="category-link">
+                            <span>Beverages</span>
+                            <span class="category-count">30</span>
+                        </a>
+                    </li>
+                    <li class="category-item">
+                        <a href="404.html" class="category-link">
+                            <span>Organic</span>
+                            <span class="category-count">64</span>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Main Content -->
+            <div>
+                <div class="shop-banner fade-in">
+                    <div class="shop-banner-content">
+                        <h2>Fresh Vegetables</h2>
+                        <p>Up to 40% off on selected items this week</p>
+                        <button class="shop-btn">Shop Now <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    <img src="image/card-3.webp" alt="Vegetables" class="shop-banner-img">
+                </div>
+
+                <div class="products-toolbar fade-in">
+                    <span style="color: var(--text-light);">Showing 1-12 of 156 results</span>
+                    <select style="padding: 10px 20px; border: 2px solid #eee; border-radius: 10px; outline: none;">
+                        <option>Sort by: Featured</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                    </select>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                <img src="image/logo.webp" alt="Stackly Logo" class="logo-img">
+                </a>
+                    <p class="footer-desc">We provide the best organic products for your daily needs. Fresh from farm to your doorstep with love and care.</p>
+                    <div class="footer-contact">
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>123 Organic Street, New York, USA</span></div>
+                        <div class="contact-item"><i class="fas fa-phone-alt"></i><span>+1 234 567 890</span></div>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><span>info@Stacklygrocery.com</span></div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="404.html">Delivery Information</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Sign In</a></li>
+                        <li><a href="cart.html">View Cart</a></li>
+                        <li><a href="404.html">My Wishlist</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Corporate</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Become a Vendor</a></li>
+                        <li><a href="404.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Popular</h4>
+                    <ul class="footer-links">
+                        <li><a href="404.html">Fresh Vegetables</a></li>
+                        <li><a href="404.html">Organic Fruits</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Stackly Grocery. All rights reserved.</p>
+                <div class="payment-methods">
+                    <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
+                    <div class="payment-icon"><i class="fab fa-cc-paypal"></i></div>
+                </div>
+                <div class="social-links">
+                    <a href="404.html" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="404.html" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="404.html" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const shopProducts = [
+            { id: 1, name: "Fresh Organic Apples", price: 5.99, oldPrice: 7.99, image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300&h=300&fit=crop", badge: "Sale" },
+            { id: 2, name: "Organic Bananas Bunch", price: 3.49, oldPrice: 4.49, image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300&h=300&fit=crop", badge: "" },
+            { id: 3, name: "Fresh Carrots Bundle", price: 2.99, oldPrice: 3.99, image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=300&h=300&fit=crop", badge: "New" },
+            { id: 4, name: "Organic Tomatoes", price: 4.99, oldPrice: 6.49, image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300&h=300&fit=crop", badge: "" },
+            { id: 5, name: "Fresh Broccoli", price: 3.99, oldPrice: 5.49, image: "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=300&h=300&fit=crop", badge: "Hot" },
+            { id: 6, name: "Organic Spinach", price: 4.49, oldPrice: 5.99, image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300&h=300&fit=crop", badge: "" },
+            { id: 7, name: "Fresh Bell Peppers", price: 5.49, oldPrice: 6.99, image: "https://images.unsplash.com/photo-1563565375-f3fdf5d66970?w=300&h=300&fit=crop", badge: "Sale" },
+            { id: 8, name: "Organic Cucumber", price: 2.49, oldPrice: 3.49, image: "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=300&h=300&fit=crop", badge: "" }
+        ];
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = shopProducts.map(product => `
+                <div class="product-card fade-in">
+                    ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                    <div class="product-actions">
+                        <div class="action-icon"><i class="fas fa-heart"></i></div>
+                        <div class="action-icon"><i class="fas fa-eye"></i></div>
+                    </div>
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">
+                            <span class="current-price">$${product.price}</span>
+                            <span class="old-price">$${product.oldPrice}</span>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+            }, 100);
+        }
+
+        function addToCart(id) {
+            const btn = event.target;
+            btn.innerHTML = '<i class="fas fa-check"></i> Added';
+            btn.style.background = '#27ae60';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                btn.style.background = '';
+            }, 2000);
+        }
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        window.addEventListener('load', renderProducts);
+    </script>
+</body>
+</html>
