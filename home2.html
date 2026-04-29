@@ -23,7 +23,7 @@
     <header class="header-minimal" id="header">
         <div class="header-content">
             <a href="index.html" class="logo-minimal">
-    <img src="image/logo.webp" class="logo-img" alt="Stackly Logo">
+    <img src="image/logo-white.png" class="logo-img" alt="Stackly Logo" id="headerLogo" data-default-logo="image/logo-white.png" data-scrolled-logo="image/logo.webp">
 </a>
 
             <nav>
@@ -414,7 +414,7 @@
         <div class="footer-top">
             <div class="footer-brand-2 reveal">
                 <a href="index.html" class="logo-minimal">
-    <img src="image/logo.webp" class="logo-img" alt="Stackly Logo">
+    <img src="image/logo-white.png" class="logo-img" alt="Stackly Logo">
 </a>
                 <p class="footer-text">
                     Bringing the freshest organic produce from local farms to your table. 
@@ -478,14 +478,27 @@
         });
 
         // Header scroll effect
-        window.addEventListener('scroll', () => {
+        function updateHeaderLogo() {
             const header = document.getElementById('header');
+            const logo = document.getElementById('headerLogo');
+            const scrollLogo = logo?.getAttribute('data-scrolled-logo');
+            const defaultLogo = logo?.getAttribute('data-default-logo');
+
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
+                if (logo && scrollLogo) {
+                    logo.src = scrollLogo;
+                }
             } else {
                 header.classList.remove('scrolled');
+                if (logo && defaultLogo) {
+                    logo.src = defaultLogo;
+                }
             }
-        });
+        }
+
+        window.addEventListener('scroll', updateHeaderLogo);
+        window.addEventListener('load', updateHeaderLogo);
 
         // Mobile menu toggle
         function toggleMenu() {
