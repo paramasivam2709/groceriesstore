@@ -190,7 +190,7 @@
                 </div>
             </div>
             <div class="category-showcase-item reveal">
-                <img src="https://images.unsplash.com/photo-1607623814075-e51df1bd6565?w=400&h=600&fit=crop" alt="Meat" class="category-showcase-img">
+                <img src="image/product-12.webp" alt="Meat" class="category-showcase-img">
                 <div class="category-showcase-overlay">
                     <h3 class="category-showcase-name">Meat</h3>
                     <p class="category-showcase-count">18 Products</p>
@@ -208,6 +208,27 @@
                 <div class="category-showcase-overlay">
                     <h3 class="category-showcase-name">Snacks</h3>
                     <p class="category-showcase-count">42 Products</p>
+                </div>
+            </div>
+            <div class="category-showcase-item reveal">
+                <img src="image/product-11.webp" alt="Meat" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Meat</h3>
+                    <p class="category-showcase-count">18 Products</p>
+                </div>
+            </div>
+            <div class="category-showcase-item reveal">
+                <img src="image/product-1.webp" alt="Meat" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Meat</h3>
+                    <p class="category-showcase-count">18 Products</p>
+                </div>
+            </div>
+            <div class="category-showcase-item reveal">
+                <img src="image/product-11.webp" alt="Meat" class="category-showcase-img">
+                <div class="category-showcase-overlay">
+                    <h3 class="category-showcase-name">Meat</h3>
+                    <p class="category-showcase-count">18 Products</p>
                 </div>
             </div>
         </div>
@@ -395,7 +416,7 @@
                 <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
             </div>
             <div class="instagram-item reveal">
-                <img src="https://images.unsplash.com/photo-1563729768-6af784d6df1d?w=400&h=400&fit=crop" alt="Instagram">
+                <img src="image/product-1.webp" alt="Instagram">
                 <div class="instagram-overlay"><i class="fab fa-instagram"></i></div>
             </div>
             <div class="instagram-item reveal">
@@ -513,6 +534,14 @@
             nav.style.padding = '20px';
             nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
         }
+        document.querySelectorAll('.dropdown > a').forEach(item => {
+    item.addEventListener('click', function(e){
+        if(window.innerWidth <= 768){
+            e.preventDefault();
+            this.parentElement.classList.toggle('active');
+        }
+    });
+});
 
         // Scroll reveal animation
         const observerOptions = {

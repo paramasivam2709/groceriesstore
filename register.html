@@ -1,176 +1,232 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account - Stackly Grocery</title>
 
-<title>Register</title>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+:root{
+    --primary:#1a5f3f;
+    --primary-light:#2d8f5f;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
 
 body{
-font-family:Segoe UI;
-background:#f5f5f5;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+    background:linear-gradient(135deg,#e8f5e9,#f5f5f5);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
 }
 
-.form-box{
-background:white;
-padding:40px;
-border-radius:12px;
-width:350px;
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
+.signup-card{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.1);
 }
 
-input{
-width:100%;
-padding:12px;
-margin-bottom:12px;
-border:1px solid #ccc;
-border-radius:8px;
+.logo{
+    text-align:center;
+    margin-bottom:20px;
 }
 
-button{
-width:100%;
-padding:12px;
-background:#1a5f3f;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
+.logo img{
+    height:60px;
 }
 
-.error{
-color:red;
-display:none;
-font-size:14px;
+h2{
+    text-align:center;
+    color:var(--primary);
+    margin-bottom:10px;
 }
 
-.eye{
-position:absolute;
-right:15px;
-margin-top:-35px;
-cursor:pointer;
-}
-.password-box{
-position:relative;
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
 }
 
-.eye{
-position:absolute;
-right:12px;
-top:12px;
-cursor:pointer;
-color:#777;
+.form-group{
+    margin-bottom:18px;
 }
 
-.register-btn{
-width:100%;
-padding:12px;
-background:#1a5f3f;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-margin-top:10px;
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
 }
 
-.register-btn:hover{
-background:#2d8f5f;
+.input-box{
+    position:relative;
 }
 
-.login-btn{
-display:block;
-text-align:center;
-margin-top:10px;
-padding:10px;
-background:#eee;
-border-radius:8px;
-text-decoration:none;
-color:#333;
+.input-box i{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
 }
 
-.login-btn:hover{
-background:#ddd;
+.input-box input{
+    width:100%;
+    padding:14px 15px 14px 45px;
+    border:2px solid #ddd;
+    border-radius:12px;
+    outline:none;
 }
 
+.input-box input:focus{
+    border-color:var(--primary);
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.signup-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:var(--primary);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.signup-btn:hover{
+    background:var(--primary-light);
+}
+
+.login-link{
+    text-align:center;
+    margin-top:20px;
+}
+
+.login-link a{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.terms{
+    margin-top:15px;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+    .row{
+        grid-template-columns:1fr;
+    }
+
+    .signup-card{
+        padding:25px;
+    }
+}
 </style>
-
 </head>
-
 <body>
 
-<div class="form-box">
+<div class="signup-card">
 
-<h2>Register</h2>
+    <div class="logo">
+        <img src="image/logo.webp" alt="Stackly Logo">
+    </div>
 
-<div class="error" id="errorMsg">
-Please fill all fields
+    <h2>Create Account</h2>
+    <p class="subtitle">Join Stackly Grocery Today</p>
+
+    <form action="login.html">
+
+        <div class="row">
+
+            <div class="form-group">
+                <label>First Name</label>
+                <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input type="text" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Last Name</label>
+                <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input type="text" required>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <div class="input-box">
+                <i class="fas fa-phone"></i>
+                <input type="tel" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" required>
+            </div>
+        </div>
+
+        <div class="terms">
+            <label>
+                <input type="checkbox" required>
+                I agree to the Terms & Conditions
+            </label>
+        </div>
+
+        <button type="submit" class="signup-btn">
+            Create Account
+        </button>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </div>
+
+    </form>
+
 </div>
-
-
-<form onsubmit="return validateForm()">
-
-<input type="text" id="name" placeholder="Full Name">
-
-<input type="email" id="email" placeholder="Email">
-
-<div class="password-box">
-<input type="password" id="password" placeholder="Password">
-<i class="fa fa-eye eye" onclick="togglePassword()"></i>
-</div>
-
-<button type="submit" class="register-btn">
-Create Account
-</button>
-
-<a href="login.html" class="login-btn">
-Login
-</a>
-
-</form>
-
-</div>
-
-<script>
-
-function togglePassword(){
-
-var pass=document.getElementById("password");
-
-if(pass.type==="password"){
-pass.type="text";
-}else{
-pass.type="password";
-}
-
-}
-
-function validateForm(){
-
-var name=document.getElementById("name").value;
-var email=document.getElementById("email").value;
-var pass=document.getElementById("password").value;
-
-if(name==="" || email==="" || pass===""){
-
-document.getElementById("errorMsg").style.display="block";
-return false;
-
-}else{
-
-window.location.href="404.html";
-return false;
-
-}
-
-}
-
-</script>
 
 </body>
 </html>
