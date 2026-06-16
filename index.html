@@ -854,6 +854,7 @@ body {
             color: var(--text-dark);
             border: none;
             font-size: 16px;
+            text-decoration: none;
         }
 
         .action-icon:hover {
@@ -2327,7 +2328,7 @@ body {
         }
 
         function goToProduct(productId) {
-            window.location.href = `product-detail.html?id=${productId}`;
+            window.location.href = `404.html`;
         }
 
         // Render Popular Products
@@ -2346,9 +2347,9 @@ body {
                             <button class="action-icon ${inWishlist ? 'active' : ''}" onclick="toggleWishlistItem(${product.id})" title="${inWishlist ? 'Remove from' : 'Add to'} Wishlist">
                                 <i class="fas fa-heart"></i>
                             </button>
-                            <button class="action-icon" onclick="quickView(${product.id})" title="Quick View">
+                            <a href="404.html" class="action-icon" title="Quick View">
                                 <i class="fas fa-eye"></i>
-                            </button>
+                            </a>
                             <button class="action-icon ${inCompare ? 'compare-active' : ''}" onclick="toggleCompare(${product.id})" title="${inCompare ? 'Remove from' : 'Add to'} Compare">
                                 <i class="fas fa-exchange-alt"></i>
                             </button>
@@ -2628,7 +2629,7 @@ body {
         }
 
         function quickView(productId) {
-            window.location.href = `product-detail.html?id=${productId}`;
+            window.location.href = `404.html`;
         }
 
         // Utility Functions

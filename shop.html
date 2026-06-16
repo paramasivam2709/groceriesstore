@@ -82,6 +82,10 @@
             gap: 30px;
         }
 
+        .dropdown {
+            position: relative;
+        }
+
         .nav-menu a {
             text-decoration: none;
             color: var(--text-dark);
@@ -110,11 +114,13 @@
     list-style:none;
     padding:10px 0;
     min-width:160px;
+    border-radius:8px;
     box-shadow:0 10px 25px rgba(0,0,0,0.1);
     opacity:0;
     visibility:hidden;
     transform:translateY(10px);
     transition:0.3s;
+    z-index:1001;
 }
 
 .dropdown-menu li{
@@ -1519,9 +1525,10 @@
                                 <li><a href="home2.html">Home 2</a></li>
                             </ul>
                         </li>
-                        <li><a href="shop.html" class="active">Shop</a></li>
-                        <li><a href="products.html">Products</a></li>
                         <li><a href="about.html">About</a></li>
+                        
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="shop.html" class="active">Shop</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
